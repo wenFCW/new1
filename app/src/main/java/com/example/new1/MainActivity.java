@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RecordActivity.class);
+                startActivityForResult(intent, SEND_CORD);
             }
         });
 
@@ -102,6 +104,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(RecordBean recordBean) {
 
+                //点击列表条目，进入RecordActivity界面的编辑状态
+                Intent intent = new Intent(MainActivity.this, RecordActivity.class);
+                intent.putExtra("id", recordBean.getId());
+                intent.putExtra("record", recordBean.getRecord());
+                intent.putExtra("time", recordBean.getTime());
+                startActivityForResult(intent, SEND_CORD);
             }
 
             @Override
